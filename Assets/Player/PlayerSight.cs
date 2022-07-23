@@ -7,33 +7,67 @@ public class PlayerSight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        sightCheck(gameObject.transform.position, gameObject.transform.up);
+        sightCheck(transform.position, transform.up);
     }
     void sightCheck(Vector2 origin, Vector2 angle)
     {
-        //cast the ray
-        RaycastHit2D hit = Physics2D.Raycast(origin, angle);
-
-        Debug.DrawRay(transform.position, transform.up * 100f, Color.red);
-        //Check for self-hit
-        if (hit.collider.gameObject.CompareTag("Player"))
+        int itr = 0;
+        //prevents hitting self with initial gaze
+        this.gameObject.layer = 2;
+        while (true)
         {
-            //die
+            //cast the ray
+            RaycastHit2D hit = Physics2D.Raycast(origin,angle,100);
+
+            Debug.DrawRay(origin, angle * 100f, Color.red);
+
+            if (hit.collider != null)
+            {
+                //not the best self-check...
+                if (hit.collider.gameObject.TryGetComponent(out PlayerSight sight))
+                {
+                    Debug.Log("OWW");
+                    //die
+                }
+
+                if (hit.collider.gameObject.TryGetComponent(out Mirror mirror))
+                {
+                    if (mirror.isActiveAndEnabled)
+                    {
+                        //reflect light. Color stuff will probably go here too
+                        origin = hit.point+hit.normal*0.01f;
+                        angle = Vector2.Reflect(angle,hit.normal);
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+            else
+            {
+                break;
+            }
+
+            itr++;
+            //now you can self-hit
+            this.gameObject.layer = 0;
+            if (itr > 10) //change this to allow more bouncing
+            {
+                break;
+            }
         }
-
-        //ideally we check if its a mirror here
-        if (hit.collider.gameObject.GetComponent<Mirror>() != null)
-        {
-            //recursive?
-            sightCheck(hit.point, hit.normal);
-        }
-
-
     }
 }
+
