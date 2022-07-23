@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1029560624}
   - component: {fileID: 702239652}
   - component: {fileID: 702239653}
+  - component: {fileID: -7230631189279883530}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -102,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 10
   rb: {fileID: 1029560624}
+  visionAngle: {x: 0, y: 0}
 --- !u!50 &1029560624
 Rigidbody2D:
   serializedVersion: 4
@@ -235,8 +237,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   line: {fileID: 702239652}
---- !u!1 &4709623708517661922
-GameObject:
+--- !u!114 &-7230631189279883530
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
