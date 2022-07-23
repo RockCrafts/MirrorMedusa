@@ -5,15 +5,16 @@ using UnityEngine;
 public class PlayerSight : MonoBehaviour
 {
     // Start is called before the first frame update
+    PlayerMovement pMove;
     void Start()
     {
-
+        pMove = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        sightCheck(transform.position, transform.up);
+        sightCheck(transform.position, pMove.visionAngle);
     }
     void sightCheck(Vector2 origin, Vector2 angle)
     {

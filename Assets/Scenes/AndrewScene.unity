@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &354202963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1711340441434613981, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+  m_PrefabInstance: {fileID: 1578388875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &354202964
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354202963}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.28, y: 0.42}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.28, y: 0.42}
+  m_EdgeRadius: 0
 --- !u!1 &729565688
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +282,8 @@ GameObject:
   m_Component:
   - component: {fileID: 946266244}
   - component: {fileID: 946266243}
+  - component: {fileID: 946266245}
+  - component: {fileID: 946266246}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -325,6 +358,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &946266245
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946266242}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &946266246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946266242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c567488c35bc4424f841dc734c59ae23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflectedColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1001 &1578388875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -332,6 +404,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1029560624, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590494540783038148, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c63b5b3f62085d428aa2977e6e5ac2c, type: 3}
+    - target: {fileID: 1590494540783038148, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1590494540783038148, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1711340441434613981, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -341,12 +429,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5313590662203796963, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313590662203796963, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5313590662203796963, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.31
+      value: 6.33
       objectReference: {fileID: 0}
     - target: {fileID: 5313590662203796963, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.64
+      value: -2.52
       objectReference: {fileID: 0}
     - target: {fileID: 5313590662203796963, guid: 63c7ab0dbc0a24645b53deb1bdf0abc8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -394,6 +490,7 @@ GameObject:
   - component: {fileID: 1655892115}
   - component: {fileID: 1655892114}
   - component: {fileID: 1655892117}
+  - component: {fileID: 1655892118}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -508,3 +605,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reflectedColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!58 &1655892118
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655892113}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
