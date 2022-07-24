@@ -7,7 +7,7 @@ using TMPro;
 public class SettingsUI : MonoBehaviour
 {
     public TMP_Dropdown quality, antialiasing;
-    public Slider brightness;
+    public Slider volume;
     private void Awake()
     {
         ApplySettings();
@@ -24,7 +24,7 @@ public class SettingsUI : MonoBehaviour
     {
         quality.value = PlayerPrefs.GetInt("quality", 2);
         antialiasing.value = PlayerPrefs.GetInt("antialiasing", 0);
-        brightness.value = PlayerPrefs.GetFloat("brightness", 0.5f);
+        volume.value = PlayerPrefs.GetFloat("volume", 1f);        
     }
     public void ApplySettings()
     {
@@ -48,8 +48,8 @@ public class SettingsUI : MonoBehaviour
         PlayerPrefs.SetInt("antialiasing", aa);
         ApplySettings();
     }
-    public void HandleBrightnessChange(float b)
+    public void HandleVolumeChange(float v)
     {
-        PlayerPrefs.SetFloat("brightness", b);
+        PlayerPrefs.SetFloat("volume", v);
     }
 }
