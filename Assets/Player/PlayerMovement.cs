@@ -21,14 +21,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             paused.Value = !paused.Value;
-            if (paused.Value)
-            {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
-            }
         }
         if (!paused.value)
         {
