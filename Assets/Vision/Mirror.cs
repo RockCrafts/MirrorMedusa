@@ -5,7 +5,7 @@ using UnityEngine;
 public class Mirror : Seeable 
 {
     [Tooltip("The color the incoming light is multiplied by")]
-    public Color reflectedColor;
+    public Color reflectedColor = Color.white;
     private Color colorToReflect;
     /// <summary>
     /// Converts the incoming color to the outgoing color
@@ -16,8 +16,8 @@ public class Mirror : Seeable
     {
         inColor.a  = 1;
         reflectedColor.a = 1;
-        print(inColor);
-        print(reflectedColor);
+        //print(inColor);
+        //print(reflectedColor);
         return reflectedColor * inColor;
     }
    
