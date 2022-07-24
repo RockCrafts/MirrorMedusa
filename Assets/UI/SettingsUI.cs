@@ -24,7 +24,7 @@ public class SettingsUI : MonoBehaviour
     {
         quality.value = PlayerPrefs.GetInt("quality", 2);
         antialiasing.value = PlayerPrefs.GetInt("antialiasing", 0);
-        volume.value = PlayerPrefs.GetFloat("volume", 1f);        
+        volume.value = PlayerPrefs.GetFloat("volume", 1f);
     }
     public void ApplySettings()
     {
@@ -37,6 +37,7 @@ public class SettingsUI : MonoBehaviour
             v *= 2;
         }
         QualitySettings.antiAliasing = v;
+        AudioListener.volume = Mathf.Clamp01(PlayerPrefs.GetFloat("volume", 1f));
     }
     public void HandleQualityChange(int q)
     {
@@ -51,5 +52,6 @@ public class SettingsUI : MonoBehaviour
     public void HandleVolumeChange(float v)
     {
         PlayerPrefs.SetFloat("volume", v);
+        ApplySettings();
     }
 }
