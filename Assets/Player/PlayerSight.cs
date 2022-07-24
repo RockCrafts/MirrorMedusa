@@ -101,7 +101,8 @@ public class PlayerSight : MonoBehaviour
         line.endWidth = 0.1f;
         line.material = new Material(Shader.Find("Sprites/Default"));
         print("color: " + c);
-        line.SetColors(c, c);
+        line.startColor = c;
+        line.endColor = c;
         line.SetPositions(new Vector3[]{new Vector3(start.x, start.y, 0), new Vector3(end.x, end.y, 0)});
         lines.Add((GameObject) child);
         Destroy(child, 10);
