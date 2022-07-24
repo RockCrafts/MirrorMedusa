@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+ using UnityEngine.Rendering.Universal;
 public class PlayerSight : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -98,6 +98,9 @@ public class PlayerSight : MonoBehaviour
         foreach (LineRenderer l in lines)
         {
             l.enabled = false;
+
+             Light2D l2 =  l.GetComponentsInChildren<Light2D>()[1];
+             l2.enabled = false;
         }
         nextLine = 0;
     }
@@ -127,6 +130,14 @@ public class PlayerSight : MonoBehaviour
         line.startColor = c;
         line.endColor = c;
         line.numCapVertices = 20;
+        Light2D l1 =  line.GetComponentsInChildren<Light2D>()[0];
+        Light2D l2 =  line.GetComponentsInChildren<Light2D>()[1];
+        l1.color = c;
+        l1.transform.position = new Vector3(start.x, start.y, itr/10);
+        l2.color = c;
+        l2.transform.position = new Vector3(end.x, end.y, itr/10);
+        // l1.enabled = true;
+        l2.enabled = true;
         line.SetPositions(new Vector3[] { new Vector3(start.x, start.y, itr/10), new Vector3(end.x, end.y, itr/10) });
         //Destroy(child, 10);
     }
