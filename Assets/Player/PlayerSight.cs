@@ -1,7 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering.Universal;
 public class PlayerSight : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -46,7 +45,7 @@ public class PlayerSight : MonoBehaviour
             else
             {
                 drawReflectedLine(origin, origin + angle * range, color, itr);
-               // Debug.Log("No Hit: " + angle*range);
+                // Debug.Log("No Hit: " + angle*range);
             }
             Debug.DrawRay(origin, angle * range, Color.red);
 
@@ -99,8 +98,9 @@ public class PlayerSight : MonoBehaviour
         {
             l.enabled = false;
 
-             Light2D l2 =  l.GetComponentsInChildren<Light2D>()[1];
-             l2.enabled = false;
+            Light2D[] lights = l.GetComponentsInChildren<Light2D>();
+            foreach (Light2D l2 in lights)
+                l2.enabled = false;
         }
         nextLine = 0;
     }
@@ -113,7 +113,8 @@ public class PlayerSight : MonoBehaviour
             child = Instantiate(lineTemplate.gameObject, transform);
             line = child.GetComponent<LineRenderer>();
             lines.Add(line);
-        } else
+        }
+        else
         {
             line = lines[nextLine];
         }
@@ -130,15 +131,20 @@ public class PlayerSight : MonoBehaviour
         line.startColor = c;
         line.endColor = c;
         line.numCapVertices = 20;
-        Light2D l1 =  line.GetComponentsInChildren<Light2D>()[0];
-        Light2D l2 =  line.GetComponentsInChildren<Light2D>()[1];
-        l1.color = c;
-        l1.transform.position = new Vector3(start.x, start.y, itr/10);
-        l2.color = c;
-        l2.transform.position = new Vector3(end.x, end.y, itr/10);
-        // l1.enabled = true;
-        l2.enabled = true;
-        line.SetPositions(new Vector3[] { new Vector3(start.x, start.y, itr/10), new Vector3(end.x, end.y, itr/10) });
+        Vector3 st = new Vector3(start.x, start.y, itr / 10);
+        Vector3 ed = new Vector3(end.x, end.y, itr / 10);
+        Light2D[] lights = line.GetComponentsInChildren<Light2D>();
+        if (lights.Length > 1) {
+            Light2D l1 = lights[0];
+            Light2D l2 = lights[1];
+            l1.color = c;
+            l1.transform.position = st;
+            l2.color = c;
+            l2.transform.position = ed;
+            // l1.enabled = true;
+            l2.enabled = true;
+        }
+        line.SetPositions(new Vector3[] { st, ed });
         //Destroy(child, 10);
     }
 }
