@@ -6,6 +6,10 @@ public class PauseManager : MonoBehaviour
 {
     public BoolVariable paused;
     public GameObject pauseMenu;
+    private void Start()
+    {
+        paused.Value = false;
+    }
     private void Update()
     {
         if (paused.Value)
