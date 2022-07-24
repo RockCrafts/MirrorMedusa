@@ -7,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 movement;
     public Vector2 visionAngle;
-    private SpriteRenderer renderer;
+    private SpriteRenderer spriteRenderer;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        renderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
