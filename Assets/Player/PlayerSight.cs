@@ -26,6 +26,8 @@ public class PlayerSight : MonoBehaviour
         {
             sightCheck(transform.position, transform.up);
         }
+        //seeable afterwords
+        this.gameObject.layer = 3;
     }
     void sightCheck(Vector2 origin, Vector2 angle)
     {
