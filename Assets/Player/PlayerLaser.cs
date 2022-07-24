@@ -8,9 +8,14 @@ public class PlayerLaser : MonoBehaviour
     public LineRenderer line;
     private float range = 100f;
     private void Update() {
-
-        hit = Physics2D.Raycast(transform.position, transform.up, range);
-        line.SetPositions(new Vector3[]{transform.position, transform.up * range});
+       //Layermask
+       LayerMask mask = LayerMask.GetMask("Default");
+        hit = Physics2D.Raycast(transform.position, transform.up, 100, mask);
+        if(hit)
+            line.SetPositions(new Vector3[]{transform.position, hit.point});
+        
+        else
+            line.SetPositions(new Vector3[]{transform.position, transform.up * range});
         
         
 
