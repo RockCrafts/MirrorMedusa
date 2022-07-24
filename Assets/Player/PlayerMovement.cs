@@ -4,28 +4,44 @@ public class PlayerMovement : MonoBehaviour
 {
     public float playerSpeed = 10f;
     private int speedPow = 2;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
     private Vector2 movement;
-    public Vector2 visionAngle;
-    private SpriteRenderer spriteRenderer;
+    //public Vec4Variable aim;
+    private Vector2 targetAngle;
     public BoolVariable eyesClosed;
+    public BoolVariable paused;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        rb.freezeRotation = true;
     }
 
     private void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        movement.Normalize();   // prevent moving faster diagonally
-        
-        // face direction of mouse
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.up = mousePosition - new Vector2(transform.position.x, transform.position.y);
+        if (Input.GetButtonDown("Cancel"))
+        {
+            paused.Value = !paused.Value;
+            if (paused.Value)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
+        if (!paused.value)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+            movement.Normalize();   // prevent moving faster diagonally
 
-        eyesClosed.value = Input.GetButton("Fire1");
+            // face direction of mouse
+            
+            //transform.up = mousePosition - new Vector2(transform.position.x, transform.position.y);
+
+            eyesClosed.value = Input.GetButton("Fire1");
+        }
     }
 
 
@@ -40,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
         finalMove.x = Mathf.Pow(Mathf.Abs(speedDiff.x) * accelX, speedPow) * Mathf.Sign(speedDiff.x);
         finalMove.y = Mathf.Pow(Mathf.Abs(speedDiff.y) * accelY, speedPow) * Mathf.Sign(speedDiff.y);
         rb.AddForce(finalMove);
+        //aim.SetValue(targetAngle);
+        //rb.SetRotation(Vector2.SignedAngle(Vector2.right, targetAngle));
     }
 
 

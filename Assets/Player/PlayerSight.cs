@@ -5,7 +5,9 @@ public class PlayerSight : MonoBehaviour
 {
     // Start is called before the first frame update
     public float range = 100f;
+    public Vector2 visionOffset;
     [Min(0)] public int maxBounces = 10;
+    public Vec4Variable aim;
     public BoolVariable eyesClosed;
     public GameEvent deathEvent;
     public GameObject laserHitEffect;
@@ -17,13 +19,20 @@ public class PlayerSight : MonoBehaviour
     {
     }
 
+    private void Update()
+    {
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 myPosition = (Vector2) transform.position + visionOffset;
+        aim.Value = mousePosition - myPosition;
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
         hideReflectedLine();
         if (!eyesClosed.value)
         {
-            sightCheck(transform.position, transform.up);
+            sightCheck((Vector2) transform.position + visionOffset, aim.Value);
         }
         //seeable afterwords
         this.gameObject.layer = 3;

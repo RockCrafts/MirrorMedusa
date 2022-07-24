@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7230631189279883530}
   - component: {fileID: 1029560624}
   - component: {fileID: 702239652}
-  - component: {fileID: 354202964}
+  - component: {fileID: 5995297316988118393}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -103,9 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  rb: {fileID: 1029560624}
-  visionAngle: {x: 0, y: 0}
   eyesClosed: {fileID: 11400000, guid: 588b75bc38a46b54b92255dbd8507ecd, type: 2}
+  paused: {fileID: 11400000, guid: b699a759d1ea99e40b4cdfa2d8b30f74, type: 2}
 --- !u!114 &-7230631189279883530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 100
+  visionOffset: {x: 0.05, y: 0.25}
   maxBounces: 69
+  aim: {fileID: 11400000, guid: 45d48dd14e23e4e4c8886d261ba8d3b8, type: 2}
   eyesClosed: {fileID: 11400000, guid: 588b75bc38a46b54b92255dbd8507ecd, type: 2}
   deathEvent: {fileID: 11400000, guid: daed3c0d5d1fef54ca3d7bb68d170ed0, type: 2}
   laserHitEffect: {fileID: 4604159451262921708, guid: cba145fa8dd8e4fd0b9516c9eb424345, type: 3}
@@ -244,8 +245,8 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!61 &354202964
-BoxCollider2D:
+--- !u!70 &5995297316988118393
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -258,18 +259,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.28, y: 0.42}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
   m_Size: {x: 0.28, y: 0.42}
-  m_EdgeRadius: 0
+  m_Direction: 0
 --- !u!1 &8286973320295371060
 GameObject:
   m_ObjectHideFlags: 0
