@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    [SerializeField] Vec4Variable dir;
+    [SerializeField] Vec4Variable aim;
 
     [Header("Sprite Directional Refrences")]
     [SerializeField] Sprite up;
@@ -21,29 +19,27 @@ public class PlayerAnimation : MonoBehaviour
         playerSight = GetComponentInParent<PlayerSight>();
     }
 
-   public void Update() {
-    
-        float angle = Vector2.SignedAngle((Vector2) transform.position, ((Vector2) dir.Value));
-        if(angle > -45 && angle < 45)
-        {
-            spriteRenderer.sprite = right;
-            // 1.6 1.5
-        }
-        else if(angle > 45 && angle < 135)
-        {
-            spriteRenderer.sprite = up;
-            // 0 1.5 
-            
-        }
-        else if(angle > 135 || angle < -135)
+    public void Update()
+    {
+        if (Vector2.Angle(Vector2.left, aim.Value) <= 45)
         {
             spriteRenderer.sprite = left;
-            // -2.5 1.5
+            spriteRenderer.sortingLayerName = "Background";
         }
-        else
+        else if (Vector2.Angle(Vector2.right, aim.Value) <= 45)
+        {
+            spriteRenderer.sprite = right;
+            spriteRenderer.sortingLayerName = "Background";
+        }
+        else if (Vector2.Angle(Vector2.up, aim.Value) <= 45)
+        {
+            spriteRenderer.sprite = up;
+            spriteRenderer.sortingLayerName = "Actors";
+        }
+        else if (Vector2.Angle(Vector2.down, aim.Value) <= 45)
         {
             spriteRenderer.sprite = down;
-               // 0 1.5
+            spriteRenderer.sortingLayerName = "Background";
         }
-   }
+    }
 }

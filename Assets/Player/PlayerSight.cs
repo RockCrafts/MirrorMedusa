@@ -143,8 +143,8 @@ public class PlayerSight : MonoBehaviour
         line.startColor = c;
         line.endColor = c;
         line.numCapVertices = 20;
-        Vector3 st = new Vector3(start.x, start.y, itr / 10);
-        Vector3 ed = new Vector3(end.x, end.y, itr / 10);
+        Vector3 st = new Vector3(start.x, start.y, itr * 0.01f);
+        Vector3 ed = new Vector3(end.x, end.y, itr * 0.01f);
         Light2D[] lights = line.GetComponentsInChildren<Light2D>();
         if (lights.Length > 1) {
             Light2D l1 = lights[0];
