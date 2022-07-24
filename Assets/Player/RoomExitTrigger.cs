@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RoomExitTrigger : MonoBehaviour
 {
+
+    [SerializeField] GameEvent levelCompleted;
     private void OnTriggerEnter2D(Collider2D other)
     {   
        if(other.TryGetComponent(out PlayerMovement player))
         {
-            print("Player entered room exit trigger, Level is completed");
+            levelCompleted.Invoke();
 
         }
     }
