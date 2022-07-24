@@ -390,27 +390,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7752288846932440423, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7752288846932440423, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752288846932440423, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7752288848669368673, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7752288848669368673, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752288848809626430, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_Name
       value: SettingsPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752288848809626430, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7752288848809626431, guid: 8d3fa082f575bfd4685b1ca9bad74286, type: 3}
       propertyPath: m_Pivot.x
