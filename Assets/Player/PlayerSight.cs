@@ -7,7 +7,7 @@ public class PlayerSight : MonoBehaviour
     public float range = 100f;
     [Min(0)] public int maxBounces = 10;
     public BoolVariable eyesClosed;
-
+    public GameObject laserHitEffect;
     ArrayList lines = new ArrayList();
     void Start()
     {
@@ -37,11 +37,11 @@ public class PlayerSight : MonoBehaviour
 
             if (hit)
             {
-                drawReflectedLine(origin, hit.point, color);
+                drawReflectedLine(origin, hit.point, color, itr);
             }
             else
             {
-                drawReflectedLine(origin, angle * range, color);
+                drawReflectedLine(origin, angle * range, color, itr);
             }
 
             Debug.DrawRay(origin, angle * range, Color.red);
@@ -94,11 +94,13 @@ public class PlayerSight : MonoBehaviour
             Destroy((GameObject)obj);
         lines.Clear();
     }
-    public void drawReflectedLine(Vector2 start, Vector2 end, Color c)
+    public void drawReflectedLine(Vector2 start, Vector2 end, Color c, int itr)
     {
         GameObject child = new GameObject("Line");
 
         child.transform.parent = transform;
+        // Destroy(Instantiate(laserHitEffect, end, Quaternion.identity), 0.1f);
+
         LineRenderer line = child.AddComponent<LineRenderer>();
         line.startWidth = 0.1f;
         line.endWidth = 0.1f;
@@ -106,7 +108,8 @@ public class PlayerSight : MonoBehaviour
         print("color: " + c);
         line.startColor = c;
         line.endColor = c;
-        line.SetPositions(new Vector3[] { new Vector3(start.x, start.y, 0), new Vector3(end.x, end.y, 0) });
+        line.numCapVertices = 20;
+        line.SetPositions(new Vector3[] { new Vector3(start.x, start.y, itr/10), new Vector3(end.x, end.y, itr/10) });
         lines.Add((GameObject)child);
         Destroy(child, 10);
     }

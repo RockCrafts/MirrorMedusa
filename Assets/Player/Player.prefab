@@ -120,6 +120,7 @@ MonoBehaviour:
   range: 100
   maxBounces: 69
   eyesClosed: {fileID: 11400000, guid: 588b75bc38a46b54b92255dbd8507ecd, type: 2}
+  laserHitEffect: {fileID: 4604159451262921708, guid: cba145fa8dd8e4fd0b9516c9eb424345, type: 3}
 --- !u!50 &1029560624
 Rigidbody2D:
   serializedVersion: 4
@@ -133,7 +134,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 10
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
