@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSight : MonoBehaviour
 {
     // Start is called before the first frame update
     public float range = 100f;
+    [Min(0)] public int maxBounces = 10;
+    public BoolVariable eyesClosed;
 
     ArrayList lines = new ArrayList();
     void Start()
@@ -15,7 +16,11 @@ public class PlayerSight : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        sightCheck(transform.position, transform.up);
+        hideReflectedLine();
+        if (!eyesClosed.value)
+        {
+            sightCheck(transform.position, transform.up);
+        }
     }
     void sightCheck(Vector2 origin, Vector2 angle)
     {
@@ -23,28 +28,28 @@ public class PlayerSight : MonoBehaviour
         //prevents hitting self with initial gaze
         this.gameObject.layer = 2;
         Color color = Color.white;
-
-            hideReflectedLine();
-        while (true)
+        while (itr <= maxBounces)
         {
-            
-         
+
+
             //cast the ray
-            RaycastHit2D hit = Physics2D.Raycast(origin,angle,100);
-            
-            if(hit) { 
+            RaycastHit2D hit = Physics2D.Raycast(origin, angle, 100);
+
+            if (hit)
+            {
                 drawReflectedLine(origin, hit.point, color);
             }
-            else {
+            else
+            {
                 drawReflectedLine(origin, angle * range, color);
             }
-           
+
             Debug.DrawRay(origin, angle * range, Color.red);
 
             if (hit.collider != null)
             {
                 //not the best self-check...
-                
+
                 if (hit.collider.gameObject.TryGetComponent(out PlayerSight sight))
                 {
                     Debug.Log("OWW");
@@ -54,14 +59,14 @@ public class PlayerSight : MonoBehaviour
                 // if (hit.collider.gameObject.TryGetComponent(out Seeable seeable)) {
                 //     seeable.whenSeen.Invoke(color);
                 // }
-                
+
                 if (hit.collider.gameObject.TryGetComponent(out Mirror mirror))
                 {
                     if (mirror.isActiveAndEnabled)
                     {
                         //reflect light. Color stuff will probably go here too
-                        origin = hit.point+hit.normal*0.01f;
-                        angle = Vector2.Reflect(angle,hit.normal);
+                        origin = hit.point + hit.normal * 0.01f;
+                        angle = Vector2.Reflect(angle, hit.normal);
                         color = mirror.ReflectColor(color);
                     }
                     else
@@ -81,20 +86,18 @@ public class PlayerSight : MonoBehaviour
             itr++;
             //now you can self-hit
             this.gameObject.layer = 3;
-            if (itr > 10) //change this to allow more bouncing
-            {
-                break;
-            }
         }
-    }public void hideReflectedLine() {
-        
-         foreach ( GameObject obj in lines )
-            Destroy((GameObject) obj);
+    }
+    public void hideReflectedLine()
+    {
+        foreach (GameObject obj in lines)
+            Destroy((GameObject)obj);
         lines.Clear();
     }
-    public void drawReflectedLine(Vector2 start, Vector2 end, Color c) {
+    public void drawReflectedLine(Vector2 start, Vector2 end, Color c)
+    {
         GameObject child = new GameObject("Line");
-        
+
         child.transform.parent = transform;
         LineRenderer line = child.AddComponent<LineRenderer>();
         line.startWidth = 0.1f;
@@ -103,8 +106,8 @@ public class PlayerSight : MonoBehaviour
         print("color: " + c);
         line.startColor = c;
         line.endColor = c;
-        line.SetPositions(new Vector3[]{new Vector3(start.x, start.y, 0), new Vector3(end.x, end.y, 0)});
-        lines.Add((GameObject) child);
+        line.SetPositions(new Vector3[] { new Vector3(start.x, start.y, 0), new Vector3(end.x, end.y, 0) });
+        lines.Add((GameObject)child);
         Destroy(child, 10);
     }
 }

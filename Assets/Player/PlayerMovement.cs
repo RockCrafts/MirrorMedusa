@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     public Vector2 visionAngle;
     private SpriteRenderer spriteRenderer;
+    public BoolVariable eyesClosed;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,8 +24,8 @@ public class PlayerMovement : MonoBehaviour
         // face direction of mouse
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         transform.up = mousePosition - new Vector2(transform.position.x, transform.position.y);
-    
 
+        eyesClosed.value = Input.GetButton("Fire1");
     }
 
 

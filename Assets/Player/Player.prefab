@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5313590662203796963}
   - component: {fileID: 1590494540783038148}
   - component: {fileID: 1647782538808547493}
+  - component: {fileID: -7230631189279883530}
   - component: {fileID: 1029560624}
   - component: {fileID: 702239652}
-  - component: {fileID: -7230631189279883530}
   - component: {fileID: 354202964}
   m_Layer: 3
   m_Name: Player
@@ -104,6 +104,22 @@ MonoBehaviour:
   playerSpeed: 10
   rb: {fileID: 1029560624}
   visionAngle: {x: 0, y: 0}
+  eyesClosed: {fileID: 11400000, guid: 588b75bc38a46b54b92255dbd8507ecd, type: 2}
+--- !u!114 &-7230631189279883530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711340441434613981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d10a88e889b0a6f40a0ffa32ad520883, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 100
+  maxBounces: 69
+  eyesClosed: {fileID: 11400000, guid: 588b75bc38a46b54b92255dbd8507ecd, type: 2}
 --- !u!50 &1029560624
 Rigidbody2D:
   serializedVersion: 4
@@ -224,19 +240,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &-7230631189279883530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1711340441434613981}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d10a88e889b0a6f40a0ffa32ad520883, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 100
 --- !u!61 &354202964
 BoxCollider2D:
   m_ObjectHideFlags: 0
