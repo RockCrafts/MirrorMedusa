@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+
 public class PlayerSight : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -15,8 +16,10 @@ public class PlayerSight : MonoBehaviour
     private int nextLine;
     [SerializeField]
     private LineRenderer lineTemplate;
+
     void Start()
     {
+        
     }
 
     private void Update()
