@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerSight : MonoBehaviour
@@ -7,8 +8,12 @@ public class PlayerSight : MonoBehaviour
     public float range = 100f;
     [Min(0)] public int maxBounces = 10;
     public BoolVariable eyesClosed;
+    public GameEvent deathEvent;
     public GameObject laserHitEffect;
-    ArrayList lines = new ArrayList();
+    private List<LineRenderer> lines = new List<LineRenderer>();
+    private int nextLine;
+    [SerializeField]
+    private LineRenderer lineTemplate;
     void Start()
     {
     }
@@ -30,20 +35,17 @@ public class PlayerSight : MonoBehaviour
         Color color = Color.white;
         while (itr <= maxBounces)
         {
-
-
             //cast the ray
-            RaycastHit2D hit = Physics2D.Raycast(origin, angle, 100);
-
+            RaycastHit2D hit = Physics2D.Raycast(origin, angle, range);
             if (hit)
             {
                 drawReflectedLine(origin, hit.point, color, itr);
             }
             else
             {
-                drawReflectedLine(origin, angle * range, color, itr);
+                drawReflectedLine(origin, origin + angle * range, color, itr);
+               // Debug.Log("No Hit: " + angle*range);
             }
-
             Debug.DrawRay(origin, angle * range, Color.red);
 
             if (hit.collider != null)
@@ -53,6 +55,7 @@ public class PlayerSight : MonoBehaviour
                 if (hit.collider.gameObject.TryGetComponent(out PlayerSight sight))
                 {
                     Debug.Log("OWW");
+                    deathEvent.Invoke();
                     //die
                 }
 
@@ -90,28 +93,40 @@ public class PlayerSight : MonoBehaviour
     }
     public void hideReflectedLine()
     {
-        foreach (GameObject obj in lines)
-            Destroy((GameObject)obj);
-        lines.Clear();
+        foreach (LineRenderer l in lines)
+        {
+            l.enabled = false;
+        }
+        nextLine = 0;
     }
     public void drawReflectedLine(Vector2 start, Vector2 end, Color c, int itr)
     {
-        GameObject child = new GameObject("Line");
-
-        child.transform.parent = transform;
+        GameObject child;
+        LineRenderer line;
+        if (nextLine >= lines.Count)
+        {
+            child = Instantiate(lineTemplate.gameObject, transform);
+            line = child.GetComponent<LineRenderer>();
+            lines.Add(line);
+        } else
+        {
+            line = lines[nextLine];
+        }
+        nextLine++;
+        //child.transform.parent = transform;
         // Destroy(Instantiate(laserHitEffect, end, Quaternion.identity), 0.1f);
 
-        LineRenderer line = child.AddComponent<LineRenderer>();
-        line.startWidth = 0.1f;
-        line.endWidth = 0.1f;
-        line.material = new Material(Shader.Find("Sprites/Default"));
-        print("color: " + c);
+
+        //line.startWidth = 0.1f;
+        //line.endWidth = 0.1f;
+        //line.material = new Material(Shader.Find("Sprites/Default"));
+        //print("color: " + c);
+        line.enabled = true;
         line.startColor = c;
         line.endColor = c;
         line.numCapVertices = 20;
         line.SetPositions(new Vector3[] { new Vector3(start.x, start.y, itr/10), new Vector3(end.x, end.y, itr/10) });
-        lines.Add((GameObject)child);
-        Destroy(child, 10);
+        //Destroy(child, 10);
     }
 }
 
