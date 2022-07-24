@@ -1,8 +1,9 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 
-{
+{   
+   
     public float playerSpeed = 10f;
     private int speedPow = 2;
     private Rigidbody2D rb;
@@ -16,7 +17,10 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
     }
-
+    public void onDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     private void Update()
     {
         if (Input.GetButtonDown("Cancel"))
