@@ -369,6 +369,7 @@ GameObject:
   - component: {fileID: 1029560624}
   - component: {fileID: 702239652}
   - component: {fileID: 5995297316988118393}
+  - component: {fileID: 687531231}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -565,6 +566,34 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -1.5}
   m_Size: {x: 1.5, y: 5}
   m_Direction: 0
+--- !u!114 &687531231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711340441434613981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52052c5f31b49834c9b5af16503475a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: daed3c0d5d1fef54ca3d7bb68d170ed0, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1647782538808547493}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: onDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8286973320295371060
 GameObject:
   m_ObjectHideFlags: 0

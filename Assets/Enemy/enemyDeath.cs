@@ -13,6 +13,8 @@ public class enemyDeath : MonoBehaviour
     {
         GetComponent<Mirror>().enabled = false;
     deathTimer = maxDeathTimer;
+    dying = false;
+    dead = false;
     }
 
     // Update is called once per frame

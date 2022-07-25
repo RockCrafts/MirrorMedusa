@@ -12,14 +12,18 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 targetAngle;
     public BoolVariable eyesClosed;
     public BoolVariable paused;
+
     private void Start()
+
     {
+        Debug.Log("START");
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
     }
     public void onDeath()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
     }
     private void Update()
     {
