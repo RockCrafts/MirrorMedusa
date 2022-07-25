@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ShuaScene.unity
     guid: d61ae2c1bef8baf469a89671260c6218
   - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: d3d9759dbab587142b7ec19870e2a01c
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 3c6a13fc345034e758d479d026c8094a
   - enabled: 1
