@@ -12,12 +12,21 @@ public class Mirror : Seeable
     /// </summary>
     /// <param name="inColor"></param>
     /// <returns></returns>
+    //Get Sprite Renderer
+    private SpriteRenderer spriteRenderer;
+    private void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.color = reflectedColor;
+    }
+ 
     public Color ReflectColor(Color inColor)
     {
         inColor.a  = 1;
         reflectedColor.a = 1;
-        //print(inColor);
-        //print(reflectedColor);
+
+        print("REFLECTED: "+ gameObject.name + " " + reflectedColor * inColor);
+
         return reflectedColor * inColor;
     }
    
