@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     void Awake() {
         float z = transform.position.z;
     }
-   void Update() {
+   void LateUpdate() {
     transform.position = new Vector3(player.transform.position.x, 0, -10);
    }
 }
