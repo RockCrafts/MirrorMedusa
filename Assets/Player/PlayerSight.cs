@@ -72,6 +72,11 @@ public class PlayerSight : MonoBehaviour
                     //die
                 }
 
+                if(hit.collider.gameObject.TryGetComponent(out enemyDeath death)){
+                    Debug.Log("vanquish");
+                    death.dying = true;
+                }
+
                 if (hit.collider.gameObject.TryGetComponent(out Seeable seeable))
                 {
                     seeable.whenSeen.Invoke(color);

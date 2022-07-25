@@ -5,7 +5,8 @@ using UnityEngine;
 public class enemySight : MonoBehaviour
 {
     public GameObject player;
-    private Vector2 angleBetween;
+    public Vector2 angleBetween;
+    public bool seePlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class enemySight : MonoBehaviour
          float angle = Mathf.Atan2(player.transform.position.y-transform.position.y,player.transform.position.x-transform.position.x);
         angleBetween.x = Mathf.Cos(angle);
         angleBetween.y = Mathf.Sin(angle);
-        checkForPlayer(transform.position,angleBetween);
+        seePlayer = checkForPlayer(transform.position,angleBetween);
     }
 
     bool checkForPlayer(Vector2 origin,Vector2 angle){
@@ -30,13 +31,10 @@ public class enemySight : MonoBehaviour
         this.gameObject.layer = 0;
         if(hit.collider != null){
             if(hit.collider.gameObject.Equals(player)){
-                Debug.Log("See you");
                 return true;
             }
-                Debug.Log("See not you");
 
         }
-        Debug.Log("See nothing");
         return false;
     }
 }
