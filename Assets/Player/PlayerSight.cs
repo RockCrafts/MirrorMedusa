@@ -19,13 +19,13 @@ public class PlayerSight : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     private void Update()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 myPosition = (Vector2) transform.position + visionOffset;
+        Vector2 myPosition = (Vector2)transform.position + visionOffset;
         aim.Value = mousePosition - myPosition;
     }
 
@@ -35,7 +35,7 @@ public class PlayerSight : MonoBehaviour
         hideReflectedLine();
         if (!eyesClosed.value)
         {
-            sightCheck((Vector2) transform.position + visionOffset, aim.Value);
+            sightCheck((Vector2)transform.position + visionOffset, aim.Value);
         }
         //seeable afterwords
         this.gameObject.layer = 3;
@@ -72,9 +72,10 @@ public class PlayerSight : MonoBehaviour
                     //die
                 }
 
-                // if (hit.collider.gameObject.TryGetComponent(out Seeable seeable)) {
-                //     seeable.whenSeen.Invoke(color);
-                // }
+                if (hit.collider.gameObject.TryGetComponent(out Seeable seeable))
+                {
+                    seeable.whenSeen.Invoke(color);
+                }
 
                 if (hit.collider.gameObject.TryGetComponent(out Mirror mirror))
                 {
@@ -146,7 +147,8 @@ public class PlayerSight : MonoBehaviour
         Vector3 st = new Vector3(start.x, start.y, itr * 0.01f);
         Vector3 ed = new Vector3(end.x, end.y, itr * 0.01f);
         Light2D[] lights = line.GetComponentsInChildren<Light2D>();
-        if (lights.Length > 1) {
+        if (lights.Length > 1)
+        {
             Light2D l1 = lights[0];
             Light2D l2 = lights[1];
             l1.color = c;

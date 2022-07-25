@@ -4,7 +4,13 @@ public class ColorDoor : Door
 {
     public Color keyColor;
     public Vector4 tolerance = new Vector4(0.1f, 0.1f, 0.1f, 1);
-
+    private void Update()
+    {
+        if(moved.TryGetComponent(out SpriteRenderer renderer))
+        {
+            renderer.color = keyColor;
+        }
+    }
     public void CheckAndOpen(Color c)
     {
         if (VerifyColor(c))
