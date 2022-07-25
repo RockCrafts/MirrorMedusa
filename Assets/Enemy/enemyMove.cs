@@ -12,7 +12,6 @@ public class enemyMove : MonoBehaviour
 
     private bool dead;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +22,7 @@ public class enemyMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dead = this.gameObject.GetComponent<enemyDeath>().dead;
+        dead = GetComponent<enemyDeath>().dead;
         seePlayer = GetComponent<enemySight>().seePlayer;
         if (seePlayer)
         {

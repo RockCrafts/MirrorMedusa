@@ -5,8 +5,8 @@ using UnityEngine;
 public class enemySight : MonoBehaviour
 {
     public GameObject player;
-    public Vector2 angleBetween;
-    public bool seePlayer;
+    [HideInInspector] public Vector2 angleBetween;
+    [HideInInspector] public bool seePlayer;
     // Start is called before the first frame update
     void Start()
     {
