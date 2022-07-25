@@ -33,10 +33,7 @@ public class PlayerSight : MonoBehaviour
     void FixedUpdate()
     {
         hideReflectedLine();
-        if (!eyesClosed.value)
-        {
-            sightCheck((Vector2)transform.position + visionOffset, aim.Value);
-        }
+        sightCheck((Vector2)transform.position + visionOffset, aim.Value);
         //seeable afterwords
         this.gameObject.layer = 3;
     }

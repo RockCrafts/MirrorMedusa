@@ -1,29 +1,24 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
-
 {   
-   
     public float playerSpeed = 10f;
     private int speedPow = 2;
     private Rigidbody2D rb;
     private Vector2 movement;
     //public Vec4Variable aim;
     private Vector2 targetAngle;
-    public BoolVariable eyesClosed;
+    //public BoolVariable eyesClosed;
     public BoolVariable paused;
 
     private void Start()
-
     {
-        Debug.Log("START");
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = true;
     }
     public void onDeath()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
     }
     private void Update()
     {
@@ -41,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             
             //transform.up = mousePosition - new Vector2(transform.position.x, transform.position.y);
 
-            eyesClosed.value = Input.GetButton("Fire1");
+            //eyesClosed.value = Input.GetButton("Fire1");
         }
     }
 
