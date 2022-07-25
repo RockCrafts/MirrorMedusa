@@ -38,9 +38,19 @@ public class PlayerMovement : MonoBehaviour
 
             //eyesClosed.value = Input.GetButton("Fire1");
         }
+        
     }
 
-
+void OnCollisionEnter2D(Collision2D col)
+{
+ 
+    //Stuff that happens when the collider collides with something
+    if(col.gameObject.TryGetComponent(out enemyDeath death)){
+        if(!death.dead){
+        onDeath();
+        }
+    }
+}
     private void FixedUpdate()
     {
         //weird code, partially found on internet and partially my own design. was way too tired when i wrote this so maybe you can understand better than me
